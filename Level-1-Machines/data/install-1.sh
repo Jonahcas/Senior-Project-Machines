@@ -26,6 +26,28 @@ echo -e "\e[1;34m [+] Adding Iorik user \e[0m"
 useradd -m Iorik
 echo 'Iorik:@RM0R3D_0N3' | sudo chpasswd
 
+# add folders and files
+mkdir /home/Iorik/Desktop
+mkdir /home/Iorik/Desktop/Client_Notes
+mkdir /home/Iorik/Documents
+mkdir /home/Iorik/Downloads
+mkdir /home/Iorik/Downloads/ClientDocsTBD
+mkdir /home/Iorik/Downloads/misc
+mkdir /home/Iorik/Pictures
+
+echo -e "Fornsworth notes:\n- Contact A. Fornsworth about the vulnerability, schedule time to remote-in.
+        \n- Log vulnerability for ticket. \n\n
+        Jacobson notes:\n- Contact B. Jacobson about OS Glitch updates.
+        \n- Log and file for Pan to look at." > /home/Iorik/Desktop/Client_Notes/notes.txt
+
+# add vulnerability
+echo -e "#!/bin/bash\n echo "Current Date and Time: $(date)"" > /home/Iorik/Downloads/misc/script.sh
+chmod +x /home/Iorik/Downloads/misc/script.sh
+chmod +w /home/Iorik/Downloads/misc/script.sh
+chmod -w /home/Iorik/Downloads/misc
+
+# Figure out how to do CRONTAB from here...
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
