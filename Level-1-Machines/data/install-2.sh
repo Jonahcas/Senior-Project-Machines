@@ -26,6 +26,12 @@ echo -e "\e[1;34m [+] Adding Kirjava user \e[0m"
 useradd -m Kirjava
 echo 'Kirjava:5T@NF0RD' | sudo chpasswd
 
+# add folders and files
+mkdir /home/Kirjava/Desktop
+mkdir /home/Kirjava/Documents
+mkdir /home/Kirjava/Downloads
+mkdir /home/Kirjava/Pictures
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 

@@ -26,6 +26,12 @@ echo -e "\e[1;34m [+] Adding Pantalaimon user \e[0m"
 useradd -m Pantalaimon
 echo 'Pantalaimon:B3l@qu4' | sudo chpasswd
 
+# add folders and files
+mkdir /home/Pantalaimon/Desktop
+mkdir /home/Pantalaimon/Documents
+mkdir /home/Pantalaimon/Downloads
+mkdir /home/Pantalaimon/Pictures
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
