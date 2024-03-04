@@ -13,3 +13,6 @@ Pantalaimon (database vuln?):
 ------------------------------------------------------------------------
 Ideas for Kirjava vuln:
 - Insecure Telnet or FTP? Could be a testing server for Kir that they forgot to make secure.
+
+Ideas for Pantalaimon vuln:
+- MongoDB or SQL. Gets the player used to Database exploitation for the "boss" machine.
