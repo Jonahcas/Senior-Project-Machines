@@ -6,6 +6,7 @@ Iorik (in-machine vuln):
 Kirjava (service vuln):
 - Add lore and rabbit holes
 - Research and add vulnerability.
+  - Figure out why Telnet isn't working properly (incorrect usage message, and cannot connect from localhost)
 
 Pantalaimon (database vuln?):
 - Add lore and rabbit holes
