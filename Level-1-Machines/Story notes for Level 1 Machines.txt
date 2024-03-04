@@ -3,7 +3,7 @@ Iorik
 Desktop: Folder with work notes, and fake clients and assignments.
 Documents: Company documents that detail Iorik's current assignment, as well as copies of emails about something suspicious going on in upper management concerning the dissapearence of Tr1@ge.
 Downloads: More company documents, and a series of folders/sub-folders, having the player learn directory traversal and how to look closely at file permissions. Through this puzzle of directory traversal,
-	   the player will find an insecure Bash Script that allows Root Access (perhaps a CRON job that runs). This allows the ability to jump machines and progress the story, or go to the optional machine).
+	   the player will find an insecure Bash Script that allows Root Access (perhaps a CRON job that runs). This allows the ability to jump machines and progress the story, or go to the optional machine.
 Pictures: [Nothing]
 
 Kirjava (Accessed through Iorik, required machine).

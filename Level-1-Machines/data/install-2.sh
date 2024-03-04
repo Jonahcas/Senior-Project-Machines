@@ -57,7 +57,7 @@ echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 echo "[+] Setting passwords"
-echo "root:g0ld3nc0mp@ss" | sudo chpasswd
+echo "root:w1llparryth1s" | sudo chpasswd
 
 echo "[+] Cleaning up"
 rm -rf /root/install.sh
