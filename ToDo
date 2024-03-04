@@ -1,0 +1,12 @@
+Iorik:
+- Figure out how to access Crontab from the install script
+- Figure out why root access is denied when SSH-ing into the VM
+  - Add a way into the Kirjava machine from Iorik root.
+
+Kirjava:
+- Add lore and rabbit holes
+- Research and add vulnerability.
+
+Pantalaimon:
+- Add lore and rabbit holes
+- Research and add vulnerability.
