@@ -1,12 +1,15 @@
-Iorik:
+Iorik (in-machine vuln):
 - Figure out how to access Crontab from the install script
 - Figure out why root access is denied when SSH-ing into the VM
   - Add a way into the Kirjava machine from Iorik root.
 
-Kirjava:
+Kirjava (service vuln):
 - Add lore and rabbit holes
 - Research and add vulnerability.
 
-Pantalaimon:
+Pantalaimon (database vuln?):
 - Add lore and rabbit holes
 - Research and add vulnerability.
+------------------------------------------------------------------------
+Ideas for Kirjava vuln:
+- Insecure Telnet or FTP? Could be a testing server for Kir that they forgot to make secure.
