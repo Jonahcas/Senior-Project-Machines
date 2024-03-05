@@ -33,7 +33,7 @@ mkdir /home/Kirjava/Downloads
 mkdir /home/Kirjava/Pictures
 
 # add vulnerability
-
+# apt install telnetd -y
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
