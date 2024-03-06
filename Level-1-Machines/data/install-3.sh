@@ -34,7 +34,7 @@ mkdir /home/Pantalaimon/Pictures
 
 echo -e "\e[1;34m [+] Installing and configuring Database \e[0m"
 apt install curl
-
+# sqlcmd not working. Why??
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
