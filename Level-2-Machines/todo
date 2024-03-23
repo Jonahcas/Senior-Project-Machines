@@ -1,3 +1,3 @@
 Machines to create:
-Stelmaria (more complex/secure in-machine vuln)
-Balthamos (more complex/secure service vuln)
+Stelmaria (more complex/secure in-machine vuln - possibly a password-secured folder in an FTP server.)
+Balthamos (Jenkins vulnerability mimicing the Pennyworth machine in HTB)
