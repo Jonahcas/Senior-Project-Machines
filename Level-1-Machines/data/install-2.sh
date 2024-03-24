@@ -29,12 +29,20 @@ echo 'Kirjava:5T@NF0RD' | sudo chpasswd
 # add folders and files
 mkdir /home/Kirjava/Desktop
 mkdir /home/Kirjava/Documents
+mkdir /home/Kirjava/Documents/urgent
 mkdir /home/Kirjava/Downloads
 mkdir /home/Kirjava/Pictures
 
 # add vulnerability
-# apt install telnetd -y
+apt-get install telnetd -y
+telnet localhost
+echo "root:w1llparryth1s" >> /home/Kirjava/Documents/urgent/credentials.txt
+base64 /home/Kirjava/Documents/urgent/credentials.txt > /home/Kirjava/Documents/urgent/credentials2.txt
+rm /home/Kirjava/Documents/urgent/credentials.txt
 
+# add LORE
+echo "Configuration done; password encrypted." > /home/Kirjava/Desktop/README.txt
+echo "I've discovered a trail coming from outside the department. A company called CHOAM LLC made a deal with the boss. Thing is, I can't find anything about the deal beyond the planner note and when she clocked out. Maybe this is what Tr1@ge was looking for. Maybe he was right about what she wanted to do with his work..." > /home/Kirjava/Desktop/text.txt
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
