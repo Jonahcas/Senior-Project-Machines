@@ -3,10 +3,10 @@ import smtplib
 from email.mime.text import MIMEText
 import socket
 
-def send_email(subject, message):
-    sender_email = ""
-    receiver_email = ""
-    smtp_server = ""
+def send_email(email, subject, message):
+    sender_email = "EDonald@gcc.recruitment.com"
+    receiver_email = email
+    smtp_server = "smtp.example.com"
 
     msg = MIMEText(message)
     msg["Subject"] = subject
