@@ -16,14 +16,16 @@ def send_email(email, subject, message):
     with smtplib.SMTP(smtp_server) as server:
         server.send_message(msg)
 
-def check_root():
+'''def check_root():
     hostname = socket.gethostname()
 
     command = f"grep 'su: pam_unix(su-1:session):session opened for user root' /var/log/auth.log"
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     if result.stdout:
-        send_email(f"Root Access Detected on {hostname}", "Root access has been detected on the server.")
+        send_email(f"Root Access Detected on {hostname}", "Root access has been detected on the server.")'''
 
+message = "Test message."
+subject = "Test subject."
 if __name__ == "__main__":
-    check_root()
+    send_email('jcasablanca@stetson.edu', subject, message)
