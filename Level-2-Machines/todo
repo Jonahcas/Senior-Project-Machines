@@ -1,3 +1,8 @@
 Machines to create:
 Stelmaria (more complex/secure in-machine vuln - possibly a password-secured folder in an FTP server.)
 Balthamos (Jenkins vulnerability mimicing the Pennyworth machine in HTB)
+
+Stelmaria Idea 1: Htpasswd (apache server) - Could contain password hash for root user
+Stelmaria Idea 2:"CONFIG.json" in a git repo, but history tells different.
+    Known hosts in ssh directory history.
+Stelmaria Idea 3: Password stored in C++ program - Running the Strings() command reveals it.
