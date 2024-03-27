@@ -1,9 +1,38 @@
-import subprocess
 import smtplib
 from email.mime.text import MIMEText
-import socket
+from email.mime.multipart import MIMEMultipart
 
-def send_email(email, subject, message):
+# Email credentials and server information
+smtp_server = "smtp.mail.yahoo.com"
+port = 587
+sender_email = "seniorproject2024@att.net"
+password = "Th3R3cruiter!"
+
+# Create a message
+message = MIMEMultipart()
+message["From"] = sender_email
+message["To"] = "jcasablanca@stetson.edu"
+message["Subject"] = "Test email"
+
+# Add body to email
+body = "This is a test email."
+message.attach(MIMEText(body, "plain"))
+
+# Connect to the server
+server = smtplib.SMTP(smtp_server, port)
+server.starttls()
+
+# Login to the email server
+server.login(sender_email, password)
+
+# Send the email
+server.sendmail(sender_email, "jcasablanca@stetson.edu", message.as_string())
+
+# Quit the server
+server.quit()
+
+
+'''def send_email(email, subject, message):
     sender_email = "EDonald@gcc.recruitment.com"
     receiver_email = email
     smtp_server = "smtp.example.com"
@@ -15,8 +44,12 @@ def send_email(email, subject, message):
 
     with smtplib.SMTP(smtp_server) as server:
         server.send_message(msg)
+'''
 
-def check_root():
+# export PS1="\u@\h \$(command here) $ " - put in Bash rc file to run when someone gets to root.
+    # FIle should make a txt file, and if txt exists, don't run this again.
+
+'''def check_root():
     hostname = socket.gethostname()
 
     command = f"grep 'su: pam_unix(su-1:session):session opened for user root' /var/log/auth.log"
@@ -28,7 +61,4 @@ def check_root():
 message = "Test message."
 subject = "Test subject."
 if __name__ == "__main__":
-    send_email('jcasablanca@stetson.edu', subject, message)
-
-# export PS1="\u@\h \$(command here) $ " - put in Bash rc file to run when someone gets to root.
-    # FIle should make a txt file, and if txt exists, don't run this again.
+    send_email('jcasablanca@stetson.edu', subject, message)'''

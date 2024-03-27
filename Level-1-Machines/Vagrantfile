@@ -1,35 +1,35 @@
 Vagrant.configure("2") do |config|
 
-	# Share the data folder - runs outside the machines
-	config.vm.synced_folder "./data", "/root/data", :mount_options => ["dmode=777", "fmode=666"]
+    # Share the data folder - runs outside the machines
+    config.vm.synced_folder "./data", "/root/data", :mount_options => ["dmode=777", "fmode=666"]
 
-	# First to run
-	config.vm.define "iorik" do |iorik|
-		iorik.vm.box = "bento/ubuntu-18.04"
-		iorik.vm.hostname = "Iorik"
-		iorik.vm.provider "virtualbox" do |vb|
-		end
-		config.vm.provision "shell", path: "./data/install-1.sh"
-    	config.vm.network "private_network", ip: "192.168.56.10"
-	end
+    # First to run
+    config.vm.define "iorik" do |iorik|
+        iorik.vm.box = "bento/ubuntu-18.04"
+        iorik.vm.hostname = "Iorik"
+        iorik.vm.provider "virtualbox" do |vb|
+        end
+    end
+    config.vm.provision "shell", path: "./data/install-1.sh"
+    config.vm.network "private_network", ip: "192.168.56.11"
 
-	# Last to run
-	config.vm.define "pantalaimon" do |pantalaimon|
-		pantalaimon.vm.box = "bento/ubuntu-18.04"
-		pantalaimon.vm.hostname = "Pantalaimon"
-		pantalaimon.vm.provider "virtualbox" do |vb|
-		end
-		config.vm.provision "shell", path: "./data/install-3.sh"
-    	config.vm.network "private_network", ip: "192.168.56.12"
-	end
+    # Last to run
+    config.vm.define "pantalaimon" do |pantalaimon|
+        pantalaimon.vm.box = "bento/ubuntu-18.04"
+        pantalaimon.vm.hostname = "Pantalaimon"
+        pantalaimon.vm.provider "virtualbox" do |vb|
+        end
+    end
+    config.vm.provision "shell", path: "./data/install-3.sh"
+    config.vm.network "private_network", ip: "192.168.56.13"
 
-	# Second to run
-	config.vm.define "kirjava" do |kirjava|
-		kirjava.vm.box = "bento/ubuntu-18.04"
-		kirjava.vm.hostname = "Kirjava"
-		kirjava.vm.provider "virtualbox" do |vb|
-		end
-		config.vm.provision "shell", path: "./data/install-2.sh"
-    	config.vm.network "private_network", ip: "192.168.56.15"
-	end
+    # Second to run
+    config.vm.define "kirjava" do |kirjava|
+        kirjava.vm.box = "bento/ubuntu-18.04"
+        kirjava.vm.hostname = "Kirjava"
+        kirjava.vm.provider "virtualbox" do |vb|
+        end
+    end
+    config.vm.provision "shell", path: "./data/install-2.sh"
+    config.vm.network "private_network", ip: "192.168.56.16"
 end
