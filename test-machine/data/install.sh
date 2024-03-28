@@ -3,7 +3,7 @@ apt update
 
 echo -e "\e[1;34m Installing Apache2 \e[0m"
 apt install apache2 -y
-
+Pictures
 echo -e "\e[1;34m [+] Installing and configuring FTP \e[0m"
 apt install vsftpd -y
 ufw allow 20
@@ -20,15 +20,15 @@ apt install openssh-server -y
 ufw allow ssh
 
 # add main user
-echo -e "\e[1;34m [+] Adding Test user \e[0m"
-useradd -m Test
-echo 'Test:t35t' | sudo chpasswd
+echo -e "\e[1;34m [+] Adding Maugrim user \e[0m"
+useradd -m Maugrim
+echo 'Maugrim:w0lfsb@ne' | sudo chpasswd
 
 # add folders and files
-mkdir /home/Test/Desktop
-mkdir /home/Test/Documents
-mkdir /home/Test/Downloads
-mkdir /home/Test/Pictures
+mkdir /home/Maugrim/Desktop
+mkdir /home/Maugrim/Documents
+mkdir /home/Maugrim/Downloads
+mkdir /home/Maugrim/Pictures
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
@@ -41,15 +41,15 @@ sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/defau
 update-grub
 
 echo "[+] Configuring hostname"
-hostnamectl set-hostname Test
+hostnamectl set-hostname Maugrim
 cat << EOF > /etc/hosts
 127.0.0.1 localhost
-127.0.0.1 Test
+127.0.0.1 Maugrim
 EOF
 
 echo "[+] Disabling history files"
 ln -sf /dev/null /root/.bash_history
-ln -sf /dev/null /home/Test/.bash_history
+ln -sf /dev/null /home/Maugrim/.bash_history
 
 echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -61,7 +61,7 @@ echo "[+] Cleaning up"
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
-rm -rf /home/Test/.sudo_as_admin_successful
-rm -rf /home/Test/.cache
-rm -rf /home/Test/.viminfo
+rm -rf /home/Maugrim/.sudo_as_admin_successful
+rm -rf /home/Maugrim/.cache
+rm -rf /home/Maugrim/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;

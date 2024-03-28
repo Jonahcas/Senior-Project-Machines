@@ -8,6 +8,9 @@ port = 587
 sender_email = "seniorproject2024@att.net"
 password = "Th3R3cruiter!"
 
+server = smtplib.SMTP(smtp_server, port)
+server.connect(smtp_server, port)
+
 # Create a message
 message = MIMEMultipart()
 message["From"] = sender_email
@@ -18,18 +21,25 @@ message["Subject"] = "Test email"
 body = "This is a test email."
 message.attach(MIMEText(body, "plain"))
 
-# Connect to the server
-server = smtplib.SMTP(smtp_server, port)
-server.starttls()
+try:
+    # Connect to the server
+    server.ehlo()
+    server.starttls()
 
-# Login to the email server
-server.login(sender_email, password)
+    # Login to the email server
+    server.login(sender_email, password)
 
-# Send the email
-server.sendmail(sender_email, "jcasablanca@stetson.edu", message.as_string())
+    # Send the email
+    server.sendmail(sender_email, "jcasablanca@stetson.edu", message.as_string())
 
-# Quit the server
-server.quit()
+    print("Email sent successfully")
+
+except Exception as e:
+    print("An error occurred:", str(e))
+
+finally:
+    # Quit the server
+    server.quit() if 'server' in locals() else None
 
 
 '''def send_email(email, subject, message):

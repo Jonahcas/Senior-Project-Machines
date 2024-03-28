@@ -4,12 +4,12 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder "./data", "/root/data", :mount_options => ["dmode=777", "fmode=666"]
 
 	# First to run
-	config.vm.define "test" do |test|
-		test.vm.box = "bento/ubuntu-18.04"
-		test.vm.hostname = "Test"
-		test.vm.provider "virtualbox" do |vb|
+	config.vm.define "maugrim" do |maugrim|
+		maugrim.vm.box = "bento/ubuntu-18.04"
+		maugrim.vm.hostname = "Maugrim"
+		maugrim.vm.provider "virtualbox" do |vb|
 		end
 		config.vm.provision "shell", path: "./data/install.sh"
-    	config.vm.network "private_network", ip: "192.168.56.50"
+    	config.vm.network "private_network", ip: "192.168.56.77"
 	end
 end
