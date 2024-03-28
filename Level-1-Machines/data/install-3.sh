@@ -34,7 +34,7 @@ mkdir /home/Pantalaimon/Pictures
 
 echo -e "\e[1;34m [+] Installing and configuring Database \e[0m"
 apt install curl
-# sqlcmd not working. Why??
+# NOTE: INSTALLING SQL BREAKS EVERYTHING
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
@@ -72,4 +72,4 @@ rm -rf /home/Pantalaimon/.cache
 rm -rf /home/Pantalaimon/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;
 
-# SQL Password: Al3thi0m3t3r
+# SQL Password: TrustNo.1
