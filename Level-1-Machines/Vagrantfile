@@ -9,9 +9,19 @@ Vagrant.configure("2") do |config|
         iorik.vm.hostname = "Iorik"
         iorik.vm.provider "virtualbox" do |vb|
         end
+        config.vm.provision "shell", path: "./data/install-1.sh"
+        config.vm.network "private_network", ip: "192.168.56.11"
     end
-    config.vm.provision "shell", path: "./data/install-1.sh"
-    config.vm.network "private_network", ip: "192.168.56.11"
+
+    # PROBLEM CHILD
+    config.vm.define "maugrimtwo" do |maugrimtwo|
+		maugrimtwo.vm.box = "bento/ubuntu-18.04"
+		maugrimtwo.vm.hostname = "Maugrimtwo"
+		maugrimtwo.vm.provider "virtualbox" do |vb|
+		end
+		config.vm.provision "shell", path: "./data/install-3.sh"
+    	config.vm.network "private_network", ip: "192.168.56.78"
+	end
 
     # Last to run
     #config.vm.define "pantalaimon" do |pantalaimon|
@@ -29,7 +39,7 @@ Vagrant.configure("2") do |config|
         kirjava.vm.hostname = "Kirjava"
         kirjava.vm.provider "virtualbox" do |vb|
         end
+        config.vm.provision "shell", path: "./data/install-2.sh"
+        config.vm.network "private_network", ip: "192.168.56.16"
     end
-    config.vm.provision "shell", path: "./data/install-2.sh"
-    config.vm.network "private_network", ip: "192.168.56.16"
 end
