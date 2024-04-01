@@ -42,9 +42,9 @@ update-grub
 
 echo "[+] Configuring hostname"
 hostnamectl set-hostname Test
-cat <<EOF > /etc/hosts
-127.0.0.1 localhost
-127.0.0.1 Test
+#cat <<EOF > /etc/hosts
+#127.0.0.1 localhost
+#127.0.0.1 Test
 EOF
 
 echo "[+] Disabling history files"

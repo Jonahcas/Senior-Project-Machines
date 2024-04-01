@@ -1,5 +1,3 @@
-# user password: @RM0R3D_0N3
-
 echo -e "\e[1;34m Updating repos \e[0m"
 apt update
 
