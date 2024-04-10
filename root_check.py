@@ -9,7 +9,7 @@ sender_email = "seniorproject2024@att.net"
 password = "Th3R3cruiter!"
 
 server = smtplib.SMTP(smtp_server, port)
-server.connect(smtp_server, port)
+# server.connect(smtp_server, port)
 
 # Create a message
 message = MIMEMultipart()
@@ -25,9 +25,11 @@ try:
     # Connect to the server
     server.ehlo()
     server.starttls()
+    print("Connected to the server")
 
     # Login to the email server
     server.login(sender_email, password)
+    print("Logged into the server")
 
     # Send the email
     server.sendmail(sender_email, "jcasablanca@stetson.edu", message.as_string())
@@ -39,7 +41,8 @@ except Exception as e:
 
 finally:
     # Quit the server
-    server.quit() if 'server' in locals() else None
+    if 'server' in locals() and hasattr(server, 'sock') and server.sock is not None:
+        server.quit()
 
 
 '''def send_email(email, subject, message):

@@ -20,15 +20,15 @@ apt install openssh-server -y
 ufw allow ssh
 
 # add main user
-echo -e "\e[1;34m [+] Adding Maugrimtwo user \e[0m"
-useradd -m Maugrimtwo
-echo 'Maugrimtwo:w0lfsb@ne' | sudo chpasswd
+echo -e "\e[1;34m [+] Adding Maugrim user \e[0m"
+useradd -m Maugrim
+echo 'Maugrim:w0lfsb@ne' | sudo chpasswd
 
 # add folders and files
-mkdir /home/Maugrimtwo/Desktop
-mkdir /home/Maugrimtwo/Documents
-mkdir /home/Maugrimtwo/Downloads
-mkdir /home/Maugrimtwo/Pictures
+mkdir /home/Maugrim/Desktop
+mkdir /home/Maugrim/Documents
+mkdir /home/Maugrim/Downloads
+mkdir /home/Maugrim/Pictures
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
@@ -41,15 +41,15 @@ sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/defau
 update-grub
 
 echo "[+] Configuring hostname"
-hostnamectl set-hostname Maugrimtwo
+hostnamectl set-hostname Maugrim
 cat << EOF > /etc/hosts
 127.0.0.1 localhost
-127.0.0.1 Maugrimtwo
+127.0.0.1 Maugrim
 EOF
 
 echo "[+] Disabling history files"
 ln -sf /dev/null /root/.bash_history
-ln -sf /dev/null /home/Maugrimtwo/.bash_history
+ln -sf /dev/null /home/Maugrim/.bash_history
 
 echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -61,7 +61,7 @@ echo "[+] Cleaning up"
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
-rm -rf /home/Maugrimtwo/.sudo_as_admin_successful
-rm -rf /home/Maugrimtwo/.cache
-rm -rf /home/Maugrimtwo/.viminfo
+rm -rf /home/Maugrim/.sudo_as_admin_successful
+rm -rf /home/Maugrim/.cache
+rm -rf /home/Maugrim/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;

@@ -1,2 +1,3 @@
 Machine:
 Xaphania (Database insecurity, that leads to machine access and an in-machine vuln.)
+Xaphania in-machine vuln idea: Password stored in C++ program - Running the Strings() command reveals it.

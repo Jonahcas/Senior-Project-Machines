@@ -14,10 +14,10 @@ Vagrant.configure("2") do |config|
     end
 
     # PROBLEM CHILD
-    config.vm.define "maugrimtwo" do |maugrimtwo|
-		maugrimtwo.vm.box = "bento/ubuntu-18.04"
-		maugrimtwo.vm.hostname = "Maugrimtwo"
-		maugrimtwo.vm.provider "virtualbox" do |vb|
+    config.vm.define "maugrim" do |maugrim|
+		maugrim.vm.box = "bento/ubuntu-18.04"
+		maugrim.vm.hostname = "Maugrim"
+		maugrim.vm.provider "virtualbox" do |vb|
 		end
 		config.vm.provision "shell", path: "./data/install-3.sh"
     	config.vm.network "private_network", ip: "192.168.56.78"

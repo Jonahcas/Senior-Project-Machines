@@ -30,6 +30,19 @@ mkdir /home/Stelmaria/Documents
 mkdir /home/Stelmaria/Downloads
 mkdir /home/Stelmaria/Pictures
 
+# testing commands - figure out how to make this work
+echo -e "\e[1;34m [+] Using htpasswd \e[0m"
+htpasswd -c /home/Test/.htpasswd root
+echo -e "\e[1;34m [+] Using expect and send \e[0m"
+except "New password:"
+send "g0ldenc0mp@ss\r"
+except "Re-type new password:"
+send "g0ldenc0mp@ss\r"
+interact
+
+# adding LORE
+echo -e "I've started work on the apache server for the department. The passwords are encrypted, so they should be secure within the department." > /home/Stelmaria/Documents/note.txt
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
