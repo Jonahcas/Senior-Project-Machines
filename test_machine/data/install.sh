@@ -3,7 +3,6 @@ apt update
 
 echo -e "\e[1;34m Installing Apache2 \e[0m"
 apt install apache2 -y
-apt-get install expect
 
 echo -e "\e[1;34m [+] Installing and configuring FTP \e[0m"
 apt install vsftpd -y
@@ -32,14 +31,6 @@ mkdir /home/Test/Downloads
 mkdir /home/Test/Pictures
 
 # testing commands - figure out how to make this work
-echo -e "\e[1;34m [+] Using htpasswd \e[0m"
-htpasswd -c /home/Test/.htpasswd Test
-ech -e "\e[1;34m [+] Using expect and send \e[0m"
-except "New password:"
-send "t3st_p@ss1\r"
-except "Re-type new password:"
-send "t3st_p@ss1\r"
-interact
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"

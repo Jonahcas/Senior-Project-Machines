@@ -2,6 +2,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+# Use WireShark for Traffic
+# Use socket for stable connection
+
 # Email credentials and server information
 smtp_server = "smtp.mail.yahoo.com"
 port = 587

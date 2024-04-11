@@ -31,14 +31,24 @@ mkdir /home/Stelmaria/Downloads
 mkdir /home/Stelmaria/Pictures
 
 # testing commands - figure out how to make this work
-echo -e "\e[1;34m [+] Using htpasswd \e[0m"
-htpasswd -c /home/Test/.htpasswd root
-echo -e "\e[1;34m [+] Using expect and send \e[0m"
-except "New password:"
-send "g0ldenc0mp@ss\r"
-except "Re-type new password:"
-send "g0ldenc0mp@ss\r"
-interact
+echo -e "\e[1;34m [+] Testing htpasswd \e[0m"
+USERNAME="root"
+PASSWORD="g0ldenc0mp@ss"
+HTPASSWD_FILE="/home/Stelmaria/.htpasswd"
+i# Check if htpasswd file exists, if not create it
+if [ ! -f "$HTPASSWD_FILE" ]; then
+    touch "$HTPASSWD_FILE"
+fi
+
+# Add user to htpasswd file
+htpasswd -b "$HTPASSWD_FILE" "$USERNAME" "$PASSWORD"
+
+# Check if htpasswd command executed successfully
+if [ $? -eq 0 ]; then
+    echo "User '$USERNAME' added/updated successfully."
+else
+    echo "Failed to add/update user '$USERNAME'."
+fi
 
 # adding LORE
 echo -e "I've started work on the apache server for the department. The passwords are encrypted, so they should be secure within the department." > /home/Stelmaria/Documents/note.txt
