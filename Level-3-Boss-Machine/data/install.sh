@@ -30,6 +30,10 @@ mkdir /home/Xaphania/Documents
 mkdir /home/Xaphania/Downloads
 mkdir /home/Xaphania/Pictures
 
+# Add vulnerable SMB server
+
+
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
