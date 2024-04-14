@@ -38,10 +38,10 @@ if ! systemctl start mariadb; then
     exit 1
 fi
 echo -e "\e[1;34m [+] Creating MariaDB Set-up... \e[0m"
-DB_USER="Test"
-DB_PASS="t3st_p@ss"
-DB_NAME="TestDB"
-TABLE_NAME="TestTable"
+DB_USER="M@ugr1m"
+DB_PASS="adm1np@ss"
+DB_NAME="LoginDB"
+TABLE_NAME="LoginTable"
 SQL_CREATE_USER="CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
 SQL_GRANT_PRIVILEGES="GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost';"
 echo -e "\e[1;34m [+] Creating MariaDB User... \e[0m"
@@ -64,16 +64,19 @@ if ! mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"; then
     exit 1
 fi
 echo -e "\e[1;34m [+] Creating Table... \e[0m"
-if ! mysql -e "USE $DB_NAME; CREATE TABLE IF NOT EXISTS $TABLE_NAME (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), PRIMARY KEY (id));"; then
+if ! mysql -e "USE $DB_NAME; CREATE TABLE IF NOT EXISTS $TABLE_NAME (id INT NOT NULL AUTO_INCREMENT, user VARCHAR(255), passwd VARCHAR(255), PRIMARY KEY (id));"; then
     echo "Error creating table"
     exit 1
 fi
 echo -e "\e[1;34m [+] Inserting Data... \e[0m"
-if ! mysql -e "USE $DB_NAME; INSERT INTO $TABLE_NAME (name) VALUES ('Test');"; then
+if ! mysql -e "USE $DB_NAME; INSERT INTO $TABLE_NAME (user, passwd) VALUES ('M@ugrim', 'adm1np@ss'), ('root', 'g0ld3nc0mp@ss');"; then
     echo "Error inserting data"
     exit 1
 fi
 echo "Database setup completed successfully"
+
+# add LORE
+echo -e "I've setup a Maria SQL server to help keep all our passwords straight. Hopefully Kirjava and Iorik won't need to contact IT again..." > /home/Maugrim/Documents/note.txt
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
@@ -103,6 +106,7 @@ echo "[+] Setting passwords"
 echo "root:g0ld3nc0mp@ss" | sudo chpasswd
 
 echo "[+] Cleaning up"
+userdel -r -f Iorik
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
