@@ -1,16 +1,3 @@
-Iorik (in-machine vuln):
-- Figure out how to access Crontab from the install script
-- Figure out why root access is denied when SSH-ing into the VM
-  - Add a way into the Kirjava machine from Iorik root.
-
-Kirjava (service vuln):
-- Research and add vulnerability.
-  - Remove ssh??
-
-Pantalaimon (database vuln?):
-- Add lore and rabbit holes
-- Research and add vulnerability.
+Maugrim (database vuln?):
+- How do I make the Database vulnerable??
 ------------------------------------------------------------------------
-
-Ideas for Pantalaimon vuln:
-- MongoDB or SQL. Gets the player used to Database exploitation for the "boss" machine.

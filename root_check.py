@@ -17,7 +17,7 @@ server = smtplib.SMTP(smtp_server, port)
 # Create a message
 message = MIMEMultipart()
 message["From"] = sender_email
-message["To"] = "jcasablanca@stetson.edu"
+message["To"] = "casafam@bellsouth.net"
 message["Subject"] = "Test email"
 
 # Add body to email

@@ -1,5 +1,6 @@
+#!/bin/bash
 echo -e "\e[1;34m Updating repos \e[0m"
-apt update
+apt update -y
 
 echo -e "\e[1;34m Installing Apache2 \e[0m"
 apt install apache2 -y
@@ -31,6 +32,70 @@ mkdir /home/Test/Downloads
 mkdir /home/Test/Pictures
 
 # testing commands - figure out how to make this work
+#echo -e "\e[1;34m [+] Installing MariaDB \e[0m"
+#apt install mariadb-server -y
+#echo -e "\e[1;34m [+] Creating MariaDB Set-up... \e[0m"
+#DB_USER="Test"
+#DB_PASS="t3st_p@ss"
+#DB_NAME="TestDB"
+#TABLE_NAME="TestTable"
+#SQL_CREATE_USER="CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
+#SQL_GRANT_PRIVILEGES="GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost';"
+#echo -e "\e[1;34m [+] Creating MariaDB User... \e[0m"
+#mysql -e "$SQL_CREATE_USER"
+#echo -e "\e[1;34m [+] Granting Privileges... \e[0m"
+#mysql -e "$SQL_GRANT_PRIVILEGES"
+#mysql -e "FLUSH PRIVILEGES;"
+#echo -e "\e[1;34m [+] Creating Database... \e[0m"
+#mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+#echo -e "\e[1;34m [+] Creating Table... \e[0m"
+#mysql -e "USE $DB_NAME; CREATE TABLE IF NOT EXISTS $TABLE_NAME (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), PRIMARY KEY (id));"
+#echo -e "\e[1;34m [+] Inserting Data... \e[0m"
+#mysql -e "USE $DB_NAME; INSERT INTO $TABLE_NAME (name) VALUES ('Test');"
+
+echo -e "\e[1;34m [+] Installing MariaDB \e[0m"
+apt install mariadb-server -y
+if ! systemctl start mariadb; then
+    echo "Error starting MariaDB"
+    exit 1
+fi
+echo -e "\e[1;34m [+] Creating MariaDB Set-up... \e[0m"
+DB_USER="Test"
+DB_PASS="t3st_p@ss"
+DB_NAME="TestDB"
+TABLE_NAME="TestTable"
+SQL_CREATE_USER="CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
+SQL_GRANT_PRIVILEGES="GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost';"
+echo -e "\e[1;34m [+] Creating MariaDB User... \e[0m"
+if ! mysql -e "$SQL_CREATE_USER"; then
+    echo "Error creating user"
+    exit 1
+fi
+echo -e "\e[1;34m [+] Granting Privileges... \e[0m"
+if ! mysql -e "$SQL_GRANT_PRIVILEGES"; then
+    echo "Error granting privileges"
+    exit 1
+fi
+if ! mysql -e "FLUSH PRIVILEGES;"; then
+    echo "Error flushing privileges"
+    exit 1
+fi
+echo -e "\e[1;34m [+] Creating Database... \e[0m"
+if ! mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"; then
+    echo "Error creating database"
+    exit 1
+fi
+echo -e "\e[1;34m [+] Creating Table... \e[0m"
+if ! mysql -e "USE $DB_NAME; CREATE TABLE IF NOT EXISTS $TABLE_NAME (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), PRIMARY KEY (id));"; then
+    echo "Error creating table"
+    exit 1
+fi
+echo -e "\e[1;34m [+] Inserting Data... \e[0m"
+if ! mysql -e "USE $DB_NAME; INSERT INTO $TABLE_NAME (name) VALUES ('Test');"; then
+    echo "Error inserting data"
+    exit 1
+fi
+echo "Database setup completed successfully"
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
