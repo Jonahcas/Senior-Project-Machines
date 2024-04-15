@@ -1,0 +1,14 @@
+Vagrant.configure("2") do |config|
+  # Share the data folder - runs outside the machines
+  config.vm.synced_folder "./data", "/root/data", :mount_options => ["dmode=777", "fmode=666"]
+
+  # First to run
+  config.vm.define "stelmaria1" do |stelmaria1|
+    stelmaria1.vm.box = "bento/ubuntu-18.04"
+    stelmaria1.vm.hostname = "Stelmaria1"
+    stelmaria1.vm.provider "virtualbox" do |vb|
+    end
+    config.vm.provision "shell", path: "./data/install.sh"
+    config.vm.network "private_network", ip: "192.168.56.77"
+  end
+end
