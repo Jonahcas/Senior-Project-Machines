@@ -35,6 +35,20 @@ mkdir /home/Iorik1/Documents
 mkdir /home/Iorik1/Downloads
 mkdir /home/Iorik1/Pictures
 
+echo -e "Fornsworth notes:\n- Contact A. Fornsworth about the vulnerability, schedule time to remote-in.
+        \n- Log vulnerability for ticket. \n\n
+        Jacobson notes:\n- Contact B. Jacobson about OS Glitch updates.
+        \n- Log and file for Pan to look at." > /home/Iorik/Desktop/Client_Notes/notes.txt
+
+# add vulnerability - insecure CRON job
+echo -e "#!/bin/bash\n echo "Current Date and Time: $(date)"" > /home/Iorik/Downloads/misc/script.sh
+chmod +x /home/Iorik/Downloads/misc/script.sh
+chmod +w /home/Iorik/Downloads/misc/script.sh
+chmod -w /home/Iorik/Downloads/misc
+crontab -e
+echo "*/15 * * * * /home/Iorik/Downloads/misc/script.sh > /dev/null 2>&1" | crontab -u Iorik -
+
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
