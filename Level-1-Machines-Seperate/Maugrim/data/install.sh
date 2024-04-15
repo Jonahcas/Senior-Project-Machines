@@ -20,15 +20,15 @@ apt install openssh-server -y
 ufw allow ssh
 
 # add main user
-echo -e "\e[1;34m [+] Adding Maugrim user \e[0m"
-useradd -m Maugrim
-echo 'Maugrim:w0lfsb@ne' | sudo chpasswd
+echo -e "\e[1;34m [+] Adding Maugrim1 user \e[0m"
+useradd -m Maugrim1
+echo 'Maugrim1:w0lfsb@ne' | sudo chpasswd
 
 # add folders and files
-mkdir /home/Maugrim/Desktop
-mkdir /home/Maugrim/Documents
-mkdir /home/Maugrim/Downloads
-mkdir /home/Maugrim/Pictures
+mkdir /home/Maugrim1/Desktop
+mkdir /home/Maugrim1/Documents
+mkdir /home/Maugrim1/Downloads
+mkdir /home/Maugrim1/Pictures
 
 # Installing SQL Server
 echo -e "\e[1;34m [+] Installing MariaDB \e[0m"
@@ -76,7 +76,7 @@ fi
 echo "Database setup completed successfully"
 
 # add LORE
-echo -e "I've setup a Maria SQL server to help keep all our passwords straight. Hopefully Kirjava and Iorik won't need to contact IT again..." > /home/Maugrim/Documents/note.txt
+echo -e "I've setup a Maria SQL server to help keep all our passwords straight. Hopefully Kirjava and Iorik won't need to contact IT again..." > /home/Maugrim1/Documents/note.txt
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
@@ -89,15 +89,15 @@ sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/defau
 update-grub
 
 echo "[+] Configuring hostname"
-hostnamectl set-hostname Maugrim
+hostnamectl set-hostname Maugrim1
 cat << EOF > /etc/hosts
 127.0.0.1 localhost
-127.0.0.1 Maugrim
+127.0.0.1 Maugrim1
 EOF
 
 echo "[+] Disabling history files"
 ln -sf /dev/null /root/.bash_history
-ln -sf /dev/null /home/Maugrim/.bash_history
+ln -sf /dev/null /home/Maugrim1/.bash_history
 
 echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -110,7 +110,7 @@ userdel -r -f Iorik
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
-rm -rf /home/Maugrim/.sudo_as_admin_successful
-rm -rf /home/Maugrim/.cache
-rm -rf /home/Maugrim/.viminfo
+rm -rf /home/Maugrim1/.sudo_as_admin_successful
+rm -rf /home/Maugrim1/.cache
+rm -rf /home/Maugrim1/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;

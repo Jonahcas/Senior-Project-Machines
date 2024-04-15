@@ -27,26 +27,38 @@ ufw allow 80
 # add main user
 echo -e "\e[1;34m [+] Adding Iorik1 user \e[0m"
 useradd -m Iorik1
-echo 'Iorik1:t3st_p@ss' | sudo chpasswd
+echo 'Iorik1:@RM0R3D_0N3' | sudo chpasswd
 
 # add folders and files
 mkdir /home/Iorik1/Desktop
+mkdir /home/Iorik1/Desktop/Client_Notes
 mkdir /home/Iorik1/Documents
 mkdir /home/Iorik1/Downloads
+mkdir /home/Iorik1/Downloads/ClientDocsTBD
+mkdir /home/Iorik1/Downloads/misc
 mkdir /home/Iorik1/Pictures
+
 
 echo -e "Fornsworth notes:\n- Contact A. Fornsworth about the vulnerability, schedule time to remote-in.
         \n- Log vulnerability for ticket. \n\n
         Jacobson notes:\n- Contact B. Jacobson about OS Glitch updates.
-        \n- Log and file for Pan to look at." > /home/Iorik/Desktop/Client_Notes/notes.txt
+        \n- Log and file for Pan to look at." > /home/Iorik1/Desktop/Client_Notes/notes.txt
 
 # add vulnerability - insecure CRON job
-echo -e "#!/bin/bash\n echo "Current Date and Time: $(date)"" > /home/Iorik/Downloads/misc/script.sh
-chmod +x /home/Iorik/Downloads/misc/script.sh
-chmod +w /home/Iorik/Downloads/misc/script.sh
-chmod -w /home/Iorik/Downloads/misc
+echo -e "#!\bin\bash\n" > /home/Iorik1/Downloads/misc/script.sh
+echo -e "timestamp=$(date +"%Y-%m-%d %T")\n" > /home/Iorik1/Downloads/misc/script.sh
+echo -e "memory_info=$(free -m | grep Mem)\n" > /home/Iorik1/Downloads/misc/script.sh
+echo -e "total_memory=$(echo $memory_info | awk '{print $2}')\n" > /home/Iorik1/Downloads/misc/script.sh
+echo -e "used_memory=$(echo $memory_info | awk '{print $3}')\n" > /home/Iorik1/Downloads/misc/script.sh
+echo -e "free_memory=$(echo $memory_info | awk '{print $4}')\n" > /home/Iorik1/Downloads/misc/script.sh
+echo -e "echo '$timestamp Total: $total_memory MB, Used: $used_memory MB, Free: $free_memory MB' >> /var/log/memory.log" > /home/Iorik1/Downloads/misc/script.sh
+
+chmod +x /home/Iorik1/Downloads/misc/script.sh
+chmod +w /home/Iorik1/Downloads/misc/script.sh
+chmod -w /home/Iorik1/Downloads/misc
 crontab -e
-echo "*/15 * * * * /home/Iorik/Downloads/misc/script.sh > /dev/null 2>&1" | crontab -u Iorik -
+echo "*/15 * * * * /home/Iorik1/Downloads/misc/script.sh > /dev/null 2>&1" | crontab -u Iorik -
+
 
 
 # clean up

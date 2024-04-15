@@ -22,27 +22,27 @@ apt install openssh-server -y
 ufw allow ssh
 
 # add main user
-echo -e "\e[1;34m [+] Adding Kirjava user \e[0m"
-useradd -m Kirjava
-echo 'Kirjava:5T@NF0RD' | sudo chpasswd
+echo -e "\e[1;34m [+] Adding Kirjava1 user \e[0m"
+useradd -m Kirjava1
+echo 'Kirjava1:5T@NF0RD' | sudo chpasswd
 
 # add folders and files
-mkdir /home/Kirjava/Desktop
-mkdir /home/Kirjava/Documents
-mkdir /home/Kirjava/Documents/urgent
-mkdir /home/Kirjava/Downloads
-mkdir /home/Kirjava/Pictures
+mkdir /home/Kirjava1/Desktop
+mkdir /home/Kirjava1/Documents
+mkdir /home/Kirjava1/Documents/urgent
+mkdir /home/Kirjava1/Downloads
+mkdir /home/Kirjava1/Pictures
 
 # add vulnerability
 apt-get install telnetd -y
 telnet localhost
-echo "root:w1llparryth1s" >> /home/Kirjava/Documents/urgent/credentials.txt
-base64 /home/Kirjava/Documents/urgent/credentials.txt > /home/Kirjava/Documents/urgent/credentials2.txt
-rm /home/Kirjava/Documents/urgent/credentials.txt
+echo "root:w1llparryth1s" >> /home/Kirjava1/Documents/urgent/credentials.txt
+base64 /home/Kirjava1/Documents/urgent/credentials.txt > /home/Kirjava1/Documents/urgent/credentials2.txt
+rm /home/Kirjava1/Documents/urgent/credentials.txt
 
 # add LORE
-echo "Configuration done; password encrypted." > /home/Kirjava/Desktop/README.txt
-echo "I've discovered a trail coming from outside the department. A company called CHOAM LLC made a deal with the boss. Thing is, I can't find anything about the deal beyond the planner note and when she clocked out. Maybe this is what Tr1@ge was looking for. Maybe he was right about what she wanted to do with his work..." > /home/Kirjava/Desktop/text.txt
+echo "Configuration done; password encrypted." > /home/Kirjava1/Desktop/README.txt
+echo "I've discovered a trail coming from outside the department. A company called CHOAM LLC made a deal with the boss. Thing is, I can't find anything about the deal beyond the planner note and when she clocked out. Maybe this is what Tr1@ge was looking for. Maybe he was right about what she wanted to do with his work..." > /home/Kirjava1/Desktop/text.txt
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
@@ -54,15 +54,15 @@ sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/defau
 update-grub
 
 echo "[+] Configuring hostname"
-hostnamectl set-hostname Kirjava
+hostnamectl set-hostname Kirjava1
 cat << EOF > /etc/hosts
 127.0.0.1 localhost
-127.0.0.1 Kirjava
+127.0.0.1 Kirjava1
 EOF
 
 echo "[+] Disabling history files"
 ln -sf /dev/null /root/.bash_history
-ln -sf /dev/null /home/Kirjava/.bash_history
+ln -sf /dev/null /home/Kirjava1/.bash_history
 
 echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -74,7 +74,7 @@ echo "[+] Cleaning up"
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
-rm -rf /home/Kirjava/.sudo_as_admin_successful
-rm -rf /home/Kirjava/.cache
-rm -rf /home/Kirjava/.viminfo
+rm -rf /home/Kirjava1/.sudo_as_admin_successful
+rm -rf /home/Kirjava1/.cache
+rm -rf /home/Kirjava1/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;

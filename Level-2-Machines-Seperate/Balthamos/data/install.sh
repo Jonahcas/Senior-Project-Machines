@@ -20,15 +20,15 @@ apt install openssh-server -y
 ufw allow ssh
 
 # add main user
-echo -e "\e[1;34m [+] Adding Balthamos user \e[0m"
-useradd -m Balthamos
-echo 'Balthamos:b@ruch' | sudo chpasswd
+echo -e "\e[1;34m [+] Adding Balthamos1 user \e[0m"
+useradd -m Balthamos1
+echo 'Balthamos1:b@ruch' | sudo chpasswd
 
 # add folders and files
-mkdir /home/Balthamos/Desktop
-mkdir /home/Balthamos/Documents
-mkdir /home/Balthamos/Downloads
-mkdir /home/Balthamos/Pictures
+mkdir /home/Balthamos1/Desktop
+mkdir /home/Balthamos1/Documents
+mkdir /home/Balthamos1/Downloads
+mkdir /home/Balthamos1/Pictures
 
 # Install necessary packages
 echo -e "\e[1;34m [+] Installing SMB \e[0m"
@@ -42,7 +42,7 @@ echo -e "\e[1;34m [+] Configuring SMB \e[0m"
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak   # Backup the original smb.conf file
 sudo bash -c 'cat <<EOT >> /etc/samba/smb.conf
 [balthamos_share]
-   comment = Balthamos SMB Share
+   comment = Balthamos1 SMB Share
    path = /srv/balthamos_share
    browseable = yes
    read only = no
@@ -91,15 +91,15 @@ sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/defau
 update-grub
 
 echo "[+] Configuring hostname"
-hostnamectl set-hostname Balthamos
+hostnamectl set-hostname Balthamos1
 cat << EOF > /etc/hosts
 127.0.0.1 localhost
-127.0.0.1 Balthamos
+127.0.0.1 Balthamos1
 EOF
 
 echo "[+] Disabling history files"
 ln -sf /dev/null /root/.bash_history
-ln -sf /dev/null /home/Balthamos/.bash_history
+ln -sf /dev/null /home/Balthamos1/.bash_history
 
 echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -111,7 +111,7 @@ echo "[+] Cleaning up"
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
-rm -rf /home/Balthamos/.sudo_as_admin_successful
-rm -rf /home/Balthamos/.cache
-rm -rf /home/Balthamos/.viminfo
+rm -rf /home/Balthamos1/.sudo_as_admin_successful
+rm -rf /home/Balthamos1/.cache
+rm -rf /home/Balthamos1/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;

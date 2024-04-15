@@ -20,21 +20,21 @@ apt install openssh-server -y
 ufw allow ssh
 
 # add main user
-echo -e "\e[1;34m [+] Adding Stelmaria user \e[0m"
-useradd -m Stelmaria
-echo 'Stelmaria:p0l@r15' | sudo chpasswd
+echo -e "\e[1;34m [+] Adding Stelmaria1 user \e[0m"
+useradd -m Stelmaria1
+echo 'Stelmaria1:p0l@r15' | sudo chpasswd
 
 # add folders and files
-mkdir /home/Stelmaria/Desktop
-mkdir /home/Stelmaria/Documents
-mkdir /home/Stelmaria/Downloads
-mkdir /home/Stelmaria/Pictures
+mkdir /home/Stelmaria1/Desktop
+mkdir /home/Stelmaria1/Documents
+mkdir /home/Stelmaria1/Downloads
+mkdir /home/Stelmaria1/Pictures
 
 # testing commands - figure out how to make this work
 echo -e "\e[1;34m [+] Testing htpasswd \e[0m"
 USERNAME="root"
 PASSWORD="g0ldenc0mp@ss"
-HTPASSWD_FILE="/home/Stelmaria/.htpasswd"
+HTPASSWD_FILE="/home/Stelmaria1/.htpasswd"
 i# Check if htpasswd file exists, if not create it
 if [ ! -f "$HTPASSWD_FILE" ]; then
     touch "$HTPASSWD_FILE"
@@ -51,7 +51,7 @@ else
 fi
 
 # adding LORE
-echo -e "I've started work on the apache server for the department. The passwords are encrypted, so they should be secure within the department." > /home/Stelmaria/Documents/note.txt
+echo -e "I've started work on the apache server for the department. The passwords are encrypted, so they should be secure within the department." > /home/Stelmaria1/Documents/note.txt
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
@@ -64,15 +64,15 @@ sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/defau
 update-grub
 
 echo "[+] Configuring hostname"
-hostnamectl set-hostname Stelmaria
+hostnamectl set-hostname Stelmaria1
 cat << EOF > /etc/hosts
 127.0.0.1 localhost
-127.0.0.1 Stelmaria
+127.0.0.1 Stelmaria1
 EOF
 
 echo "[+] Disabling history files"
 ln -sf /dev/null /root/.bash_history
-ln -sf /dev/null /home/Stelmaria/.bash_history
+ln -sf /dev/null /home/Stelmaria1/.bash_history
 
 echo "[+] Enabling root SSH login"
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -84,7 +84,7 @@ echo "[+] Cleaning up"
 rm -rf /root/install.sh
 rm -rf /root/.cache
 rm -rf /root/.viminfo
-rm -rf /home/Stelmaria/.sudo_as_admin_successful
-rm -rf /home/Stelmaria/.cache
-rm -rf /home/Stelmaria/.viminfo
+rm -rf /home/Stelmaria1/.sudo_as_admin_successful
+rm -rf /home/Stelmaria1/.cache
+rm -rf /home/Stelmaria1/.viminfo
 find /var/log -type f -exec sh -c "cat /dev/null > {}" \;
