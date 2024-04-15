@@ -45,7 +45,8 @@ try:
 
     # Start TLS negotiation
     client_socket = socket.create_connection((smtp_server, port))
-    client_socket = ssl.SSLContext.wrap_socket(client_socket)
+    ssl_context = SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    client_socket= ssl_context.wrap_socket(client_socket)
     print("TLS connection established")
 
     # Login to the email server
