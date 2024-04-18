@@ -24,7 +24,7 @@ ufw allow ssh
 # add main user
 echo -e "\e[1;34m [+] Adding Kirjava1 user \e[0m"
 useradd -m Kirjava1
-echo 'Kirjava1:5T@NF0RD' | sudo chpasswd
+echo 'Kirjava1:Kirjava' | sudo chpasswd
 
 # add folders and files
 mkdir /home/Kirjava1/Desktop
@@ -33,12 +33,42 @@ mkdir /home/Kirjava1/Documents/urgent
 mkdir /home/Kirjava1/Downloads
 mkdir /home/Kirjava1/Pictures
 
-# add vulnerability
+# add telnet server
 apt-get install telnetd -y
 telnet localhost
-echo "root:w1llparryth1s" >> /home/Kirjava1/Documents/urgent/credentials.txt
-base64 /home/Kirjava1/Documents/urgent/credentials.txt > /home/Kirjava1/Documents/urgent/credentials2.txt
-rm /home/Kirjava1/Documents/urgent/credentials.txt
+# add vulnerable file
+# Define file paths
+credentials_file="/home/Kirjava1/Documents/urgent/credentials.txt"
+credentials_encoded_file="/home/Kirjava1/Documents/urgent/credentials2.txt"
+
+# Step 1: Echo password into credentials file
+echo "root:w1llparryth1s" >> "$credentials_file"
+
+# Check if step 1 was successful
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to create credentials file"
+    exit 1
+fi
+
+# Step 2: Encode credentials file to base64 and save to credentials2 file
+base64 "$credentials_file" > "$credentials_encoded_file"
+
+# Check if step 2 was successful
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to encode credentials file"
+    exit 1
+fi
+
+# Step 3: Remove credentials file
+rm "$credentials_file"
+
+# Check if step 3 was successful
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to remove credentials file"
+    exit 1
+fi
+
+echo "Script executed successfully"
 
 # add LORE
 echo "Configuration done; password encrypted." > /home/Kirjava1/Desktop/README.txt

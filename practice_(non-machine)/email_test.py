@@ -11,6 +11,8 @@ port = 587
 sender_email = "seniorproject2024@att.net"
 password = "Th3R3cruiter!"
 
+
+#Send Grid .com
 # Create a message
 message = MIMEMultipart()
 message["From"] = sender_email
