@@ -30,6 +30,52 @@ mkdir /home/Stelmaria1/Documents
 mkdir /home/Stelmaria1/Downloads
 mkdir /home/Stelmaria1/Pictures
 
+echo -e "\e[1;34m [+] Installing Player-To-User Vulnerability \e[0m"
+apt install php -y
+echo "<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Upload</title>
+</head>
+<body>
+    <h2>Upload Photo</h2>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>" > /var/www/html/photo-php/index.php
+
+echo "<?php\n
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if file was uploaded without errors
+    if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
+        $uploadDir = "uploads/"; // Directory where files will be uploaded
+        $filename = basename($_FILES["file"]["name"]);
+        $targetPath = $uploadDir . $filename;
+        
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetPath)) {
+            // File uploaded successfully
+            // Redirect to the uploaded image
+            header("Location: $targetPath");
+            exit();
+        } else {
+            // Error while uploading file
+            echo "Sorry, there was an error uploading your file.";
+        }
+    } else {
+        // No file uploaded or file upload error occurred
+        echo "Please select a file to upload.";
+    }
+}
+?>" > /var/www/html/photo-php/upload.php
+chown -R www-data:www-data /var/www/html/photo-php
+chmod -R 755 /var/www/html/photo-php
+
 # testing commands - figure out how to make this work
 echo -e "\e[1;34m [+] Testing htpasswd \e[0m"
 USERNAME="root"
