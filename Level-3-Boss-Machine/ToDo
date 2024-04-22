@@ -1,3 +1,3 @@
 Machine:
-Xaphania (Database insecurity, that leads to machine access and an in-machine vuln.)
-Xaphania in-machine vuln idea: Password stored in C++ program - Running the Strings() command reveals it.
+Xaphania - Double service vulnerability. Grab a file from FTP, decode it for possible SMB logins. Use login to access "$C" share.
+        Once in share, navigate through the file system and start deleting everything.

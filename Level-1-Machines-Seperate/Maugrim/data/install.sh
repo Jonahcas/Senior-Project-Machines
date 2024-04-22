@@ -78,6 +78,11 @@ echo "Database setup completed successfully"
 # add LORE
 echo -e "I've setup a Maria SQL server to help keep all our passwords straight. Hopefully Kirjava and Iorik won't need to contact IT again..." > /home/Maugrim1/Documents/note.txt
 
+# Allowing 3306 port
+ufw allow 3306
+sed -i '29d' /etc/mysql/mariadb.conf.d/50-server.cnf
+systemctl restart mariadb
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 

@@ -30,9 +30,25 @@ mkdir /home/Xaphania/Documents
 mkdir /home/Xaphania/Downloads
 mkdir /home/Xaphania/Pictures
 
-# Add vulnerable SMB server
+# Create a file with several usernames and passwords, and put it in /var/ftp/logins.txt
+cat << EOF > /var/ftp/logins.txt
+B0ard1:P@rac3lsus
+B0@rd2:Parad1s0
+B0@rd3: G3pp3tt0
+EOF
 
+# Base64 encode the file
+base64 /var/ftp/logins.txt > /var/ftp/logins.txt.b64
 
+# Put the file into the ftp server
+ftp -n localhost <<END_SCRIPT
+quote USER anonymous
+quote PASS anonymous
+binary
+cd /var/ftp
+put /var/ftp/logins.txt.b64
+quit
+END_SCRIPT
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
