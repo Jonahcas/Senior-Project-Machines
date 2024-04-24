@@ -31,24 +31,64 @@ mkdir /home/Xaphania/Downloads
 mkdir /home/Xaphania/Pictures
 
 # Create a file with several usernames and passwords, and put it in /var/ftp/logins.txt
-cat << EOF > /var/ftp/logins.txt
-B0ard1:P@rac3lsus
+file_name="logins.txt"
+file_name_2="logins.txt.b64"
+text_context="B0ard1:P@rac3lsus
 B0@rd2:Parad1s0
-B0@rd3: G3pp3tt0
-EOF
+B0@rd3: G3pp3tt0"
 
 # Base64 encode the file
-base64 /var/ftp/logins.txt > /var/ftp/logins.txt.b64
+base64 "$file_name" > "$file_name_2"
+
+# move file
+mv logins.txt.b64 ../../
 
 # Put the file into the ftp server
-ftp -n localhost <<END_SCRIPT
-quote USER anonymous
-quote PASS anonymous
-binary
-cd /var/ftp
-put /var/ftp/logins.txt.b64
-quit
-END_SCRIPT
+ftp -n localhost <<EOF
+quote USER Xaphania
+quote PASS p0l@r15
+cd ../../
+put logins.txt.b64
+bye
+EOF
+
+# Create Samba User
+useradd -m B0ard1
+echo 'B0ard1:P@rac3lsus' | sudo chpasswd
+
+# Install necessary packages
+echo -e "\e[1;34m [+] Installing SMB \e[0m"
+sudo apt install -y samba
+
+# Stuff goes here
+addgroup smbgrp
+usermod -aG smbgrp B0ard1
+usermod -aG smbgrp Xaphania
+sudo tee -a /etc/samba/smb.conf << EOT
+[admin_share$]
+    path = /
+    browsable = yes
+    guest ok = no
+    valid users = @smbgrp
+    read only = no
+EOT
+
+
+# SMBclient check
+check_smbclient() {
+    if ! command -v smbclient &> /dev/null;then
+        echo -e "\e[1;34m [+] Installing smbclient \e[0m"
+        apt install smbclient -y
+    fi
+}
+
+# Access share
+access_share() {
+    if ! smbclient //localhost/ -U guest -c "$1";then
+        echo -e "\e[1;31m [!] Failed to access share \e[0m"
+        exit 1
+    fi
+}
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"

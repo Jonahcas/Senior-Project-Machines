@@ -4,30 +4,37 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from dotenv import load_dotenv
 
-def change_encoding(input_file, output_file, current_encoding, target_encoding):
+#def change_encoding(input_file, output_file, current_encoding, target_encoding):
     # Read the content of the input file with the current encoding
-    with open(input_file, 'r', encoding=current_encoding) as f:
-        content = f.read()
+#    with open(input_file, 'r', encoding=current_encoding) as f:
+#        content = f.read()
     # Encode the content with the target encoding
-    encoded_content = content.encode(target_encoding)
+#    encoded_content = content.encode(target_encoding)
     # Write the encoded content to the output file with the target encoding
-    with open(output_file, 'wb') as f:
-        f.write(encoded_content)
+#    with open(output_file, 'wb') as f:
+#        f.write(encoded_content)
 
 # Define the input and output file paths
-input_file = 'sendgrid.env'
-output_file = 'sendgrid_encoded.env'
+#input_file = 'sendgrid.env'
+#output_file = 'sendgrid_encoded.env'
 # Define the current and target encodings
-current_encoding = 'utf-16-le'
-target_encoding = 'utf-8'
+#current_encoding = 'utf-16-le'
+#target_encoding = 'utf-8'
 # Change the encoding of the input file
-change_encoding(input_file, output_file, current_encoding, target_encoding)
+#change_encoding(input_file, output_file, current_encoding, target_encoding)
 
-dotenv_path = join(dirname(__file__), 'sendgrid_encoded.env')
+dotenv_path = join(dirname(__file__), 'sendgrid.env')
 load_dotenv(dotenv_path)
 
-#for key, value in os.environ.items():
-#    print(f"{key}: {value}")
+num_env_vars = len(os.environ)
+print(f"Number of environment variables: {num_env_vars}")
+
+for key, value in os.environ.items():
+    print(f"{key}: {value}")
+
+num_env_vars_after = len(os.environ)
+print('\n'+f"Number of environment variables after printing vars: {num_env_vars_after}")
+
 
 message = Mail(
     from_email='seniorproject2024@att.net',
