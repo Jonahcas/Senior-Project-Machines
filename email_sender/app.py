@@ -20,8 +20,8 @@ print('\n'+f"Number of environment variables after printing vars: {num_env_vars_
 message = Mail(
     from_email='seniorproject2024@att.net',
     to_emails='jcasablanca@stetson.edu',
-    subject='Sending test email with python and Twilio-sendgrid API',
-    html_content='<strong>Thank you for your business</strong>')
+    subject='This is another test email',
+    html_content='<strong>This is the second email I have sent</strong>')
 try:
     print(os.environ.get('SENDGRID_API_KEY'))
     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
