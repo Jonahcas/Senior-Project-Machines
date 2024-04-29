@@ -58,6 +58,20 @@ if ! mysql -e "FLUSH PRIVILEGES;"; then
     echo "Error flushing privileges"
     exit 1
 fi
+
+# create second user
+echo -e "\e[1;34m [+] Creating Second User... \e[0m"
+if ! mysql -e "CREATE USER IF NOT EXISTS 'root'@'%'"; then
+    echo "Error creating user"
+    exit 1
+fi
+
+echo -e "\e[1;34m [+] Granting Privileges... \e[0m"
+if ! mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'"; then
+    echo "Error granting privileges"
+    exit 1
+fi
+
 echo -e "\e[1;34m [+] Creating Database... \e[0m"
 if ! mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"; then
     echo "Error creating database"
@@ -73,6 +87,14 @@ if ! mysql -e "USE $DB_NAME; INSERT INTO $TABLE_NAME (user, passwd) VALUES ('M@u
     echo "Error inserting data"
     exit 1
 fi
+
+# Open database to all
+echo -e "\e[1;34m [+] Opening Database... \e[0m"
+echo "bind-address = 0.0.0.0" >> /etc/mysql/mariadb.conf.d/50-server.cnf
+
+# restart MariaDB
+systemctl restart mariadb
+
 echo "Database setup completed successfully"
 
 # add LORE
