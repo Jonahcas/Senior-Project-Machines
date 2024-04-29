@@ -83,6 +83,8 @@ ufw allow 3306
 sed -i '29d' /etc/mysql/mariadb.conf.d/50-server.cnf
 systemctl restart mariadb
 
+echo "Congratulations! You've solved the machine!" >> /root/.bashrc
+
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
 
