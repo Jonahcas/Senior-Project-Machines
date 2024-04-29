@@ -38,7 +38,7 @@ if ! systemctl start mariadb; then
     exit 1
 fi
 echo -e "\e[1;34m [+] Creating MariaDB Set-up... \e[0m"
-DB_USER="M@ugr1m"
+DB_USER="Maugrim1"
 DB_PASS="adm1np@ss"
 DB_NAME="LoginDB"
 TABLE_NAME="LoginTable"
