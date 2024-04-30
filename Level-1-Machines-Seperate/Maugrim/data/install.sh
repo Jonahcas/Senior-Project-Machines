@@ -3,7 +3,7 @@ apt update
 
 echo -e "\e[1;34m Installing Apache2 \e[0m"
 apt install apache2 -y
-Pictures
+apt install telnetd -y
 echo -e "\e[1;34m [+] Installing and configuring FTP \e[0m"
 apt install vsftpd -y
 ufw allow 20
@@ -38,26 +38,30 @@ if ! systemctl start mariadb; then
     exit 1
 fi
 echo -e "\e[1;34m [+] Creating MariaDB Set-up... \e[0m"
-DB_USER="Maugrim1"
-DB_PASS="adm1np@ss"
-DB_NAME="LoginDB"
-TABLE_NAME="LoginTable"
-SQL_CREATE_USER="CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
-SQL_GRANT_PRIVILEGES="GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost';"
+#SQL_CREATE_USER="CREATE USER IF NOT EXISTS 'Maugrim1'@'localhost' IDENTIFIED BY 'adm1np@ss';"
+#SQL_GRANT_PRIVILEGES="GRANT ALL PRIVILEGES ON *.* TO 'Maugrim1'@'localhost';"
 echo -e "\e[1;34m [+] Creating MariaDB User... \e[0m"
-if ! mysql -e "$SQL_CREATE_USER"; then
+if ! mysql -e "CREATE USER IF NOT EXISTS 'Maugrim1'@'localhost' IDENTIFIED BY 'w0lfsb@ne';"; then
     echo "Error creating user"
     exit 1
 fi
+
+sudo systemctl restart mariadb
+
 echo -e "\e[1;34m [+] Granting Privileges... \e[0m"
-if ! mysql -e "$SQL_GRANT_PRIVILEGES"; then
+if ! mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'Maugrim1'@'localhost'"; then
     echo "Error granting privileges"
     exit 1
 fi
+
+sudo systemctl restart mariadb
+
 if ! mysql -e "FLUSH PRIVILEGES;"; then
     echo "Error flushing privileges"
     exit 1
 fi
+
+sudo systemctl restart mariadb
 
 # create second user
 echo -e "\e[1;34m [+] Creating Second User... \e[0m"
@@ -66,27 +70,39 @@ if ! mysql -e "CREATE USER IF NOT EXISTS 'root'@'%'"; then
     exit 1
 fi
 
+sudo systemctl restart mariadb
+
 echo -e "\e[1;34m [+] Granting Privileges... \e[0m"
 if ! mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'"; then
     echo "Error granting privileges"
     exit 1
 fi
 
+sudo systemctl restart mariadb
+
 echo -e "\e[1;34m [+] Creating Database... \e[0m"
-if ! mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"; then
+if ! mysql -e "CREATE DATABASE IF NOT EXISTS LoginDB;"; then
     echo "Error creating database"
     exit 1
 fi
+
+sudo systemctl restart mariadb
+
 echo -e "\e[1;34m [+] Creating Table... \e[0m"
-if ! mysql -e "USE $DB_NAME; CREATE TABLE IF NOT EXISTS $TABLE_NAME (id INT NOT NULL AUTO_INCREMENT, user VARCHAR(255), passwd VARCHAR(255), PRIMARY KEY (id));"; then
+if ! mysql -e "USE LoginDB; CREATE TABLE IF NOT EXISTS LoginTable (id INT NOT NULL AUTO_INCREMENT, user VARCHAR(255), passwd VARCHAR(255), PRIMARY KEY (id));"; then
     echo "Error creating table"
     exit 1
 fi
+
+sudo systemctl restart mariadb
+
 echo -e "\e[1;34m [+] Inserting Data... \e[0m"
-if ! mysql -e "USE $DB_NAME; INSERT INTO $TABLE_NAME (user, passwd) VALUES ('M@ugrim', 'adm1np@ss'), ('root', 'g0ld3nc0mp@ss');"; then
+if ! mysql -e "USE LoginDB; INSERT INTO LoginTable (user, passwd) VALUES ('M@ugrim', 'w0lfsb@ne'), ('root', 'g0ld3nc0mp@ss');"; then
     echo "Error inserting data"
     exit 1
 fi
+
+sudo systemctl restart mariadb
 
 # Open database to all
 echo -e "\e[1;34m [+] Opening Database... \e[0m"

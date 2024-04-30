@@ -74,7 +74,7 @@ echo "Script executed successfully"
 echo "Configuration done; password encrypted." > /home/Kirjava1/Desktop/README.txt
 echo "I've discovered a trail coming from outside the department. A company called CHOAM LLC made a deal with the boss. Thing is, I can't find anything about the deal beyond the planner note and when she clocked out. Maybe this is what Tr1@ge was looking for. Maybe he was right about what she wanted to do with his work..." > /home/Kirjava1/Desktop/text.txt
 
-echo "Congratulations! You've solved the machine!" >> /root/.bashrc
+echo "Congratulations! You solved the machine!" >> /root/.bashrc
 
 # clean up
 echo -e "\e[1;34m [+] CLEANING UP... \e[0m"
